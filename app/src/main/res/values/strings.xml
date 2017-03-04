@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="fp1">Free Practice 1</string>
+    <string name="fp2">Free Practice 2</string>
+    <string name="fp3">Free Practice 3</string>
+    <string name="qualy">Qualifying</string>
+    <string name="race">Race</string>
 </resources>
