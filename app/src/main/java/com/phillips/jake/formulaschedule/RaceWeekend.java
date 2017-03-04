@@ -51,8 +51,11 @@ public class RaceWeekend implements Parcelable{
         return new int[] {fp1Time, fp2Time, fp3Time, qulayTime, raceTime};
     }
 
-    public String getEventDates(int start, int end){
+    public String getEventDates(){
         String dates;
+
+        int start = fp1Time;
+        int end = raceTime;
 
         String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String startMonth, endMonth, startDay, endDay;
