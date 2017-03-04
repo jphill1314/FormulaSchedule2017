@@ -32,10 +32,7 @@ public class SeasonScheduleFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (getArguments() != null){
             schedule = getArguments().getParcelableArrayList(MainActivity.SCHEDULE_KEY);
-            Log.d("Debug", "This happened!");
         }
-
-        Log.d("Debug", "This happened2!");
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_season_schedule, container, false);

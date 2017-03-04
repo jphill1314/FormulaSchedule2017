@@ -14,7 +14,7 @@ import java.util.TimeZone;
 public class RaceWeekend implements Parcelable{
 
     private String country, track;
-    private int fp1Time, fp2Time, fp3Time, qulayTime, raceTime;
+    private int fp1Time, fp2Time, fp3Time, qulayTime, raceTime, flag;
 
     public RaceWeekend(String country, String track, int fp1, int fp2, int fp3, int qualy, int race){
         this.country = country;
