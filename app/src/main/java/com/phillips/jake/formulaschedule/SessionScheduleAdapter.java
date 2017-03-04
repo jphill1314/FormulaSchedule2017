@@ -93,6 +93,25 @@ public class SessionScheduleAdapter extends RecyclerView.Adapter<SessionSchedule
         Calendar local = new GregorianCalendar(TimeZone.getDefault());
         local.setTimeInMillis(start * 1000L);
 
-        return local.getTime().toString();
+        int hour = local.get(Calendar.HOUR);
+        int min = local.get(Calendar.MINUTE);
+        int am = local.get(Calendar.AM_PM);
+
+        if(am == 0){
+            if (min < 10){
+                return hour + ":0" + min + " AM";
+            }
+            else{
+                return hour + ":" + min + " AM";
+            }
+        }
+        else{
+            if (min < 10){
+                return hour + ":0" + min + " PM";
+            }
+            else{
+                return hour + ":" + min + " PM";
+            }
+        }
     }
 }
