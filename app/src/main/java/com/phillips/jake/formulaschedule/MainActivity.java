@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle scheduleBundle = new Bundle();
             scheduleBundle.putParcelableArrayList(SCHEDULE_KEY, schedule);
             ssFrag.setArguments(scheduleBundle);
+            cdFrag.setArguments(scheduleBundle);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.top_frame_view, cdFrag)
