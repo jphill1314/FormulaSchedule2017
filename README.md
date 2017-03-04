@@ -1,23 +1,20 @@
-# FormulaSchedule2017
+# Formula Schedule 2017
 
-Android App in development
-Features (Ideas)
+##Android App in development
+###Features (Ideas)
 * Shows F1 schedule
 * Click on event to get more info
-* time for start of events in track time and local time
-* top list time is next/current race
-* bigger box, shows start time of race
-	* instead of times show countdown to next session?
-	* if session in progress show time left? (is it predictable)
+* time for start of events in local time of phone (and local time of track?)
   
-Notes to self
+###Notes to self
 * basic functionality is in
+* need to add page to give credit for images
 * need to make it look good
-	* track map?
-	* country's flag?
+	* is the track map useful?
+	* country's flag -> good location / size?
 	* pictures from the track?
 	* show weather -> could add a link to a weather prediction thing
 
-Extra Ideas
+###Extra Ideas
 * Notifications for starts of events
 * get events from web / not hardcoded
