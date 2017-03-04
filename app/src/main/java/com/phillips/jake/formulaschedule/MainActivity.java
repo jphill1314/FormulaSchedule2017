@@ -3,9 +3,12 @@ package com.phillips.jake.formulaschedule;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    RaceWeekend[] schedule;
+    ArrayList<RaceWeekend> schedule;
+    public static final String SCHEDULE_KEY = "schedule_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
             CountdownFragment cdFrag = new CountdownFragment();
             SeasonScheduleFragment ssFrag = new SeasonScheduleFragment();
+
+            Bundle scheduleBundle = new Bundle();
+            scheduleBundle.putParcelableArrayList(SCHEDULE_KEY, schedule);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.top_frame_view, cdFrag)
@@ -37,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
         int[] qualyTimes = getResources().getIntArray(R.array.Qualy_Times);
         int[] raceTimes = getResources().getIntArray(R.array.Race_Times);
 
-        schedule = new RaceWeekend[countries.length];
 
-        for(int i = 0; i < schedule.length; i++){
-            schedule[i] = new RaceWeekend(countries[i], countries[i], fp1Times[i], fp2Times[i],
-                    fp3Times[i], qualyTimes[i], raceTimes[i]);
+        for(int i = 0; i < countries.length; i++){
+            schedule.add(new RaceWeekend(countries[i], countries[i], fp1Times[i], fp2Times[i],
+                    fp3Times[i], qualyTimes[i], raceTimes[i]));
         }
     }
 }

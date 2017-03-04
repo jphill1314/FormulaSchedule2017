@@ -1,5 +1,8 @@
 package com.phillips.jake.formulaschedule;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -8,7 +11,7 @@ import java.util.TimeZone;
  * Created by Jake on 3/4/2017.
  */
 
-public class RaceWeekend {
+public class RaceWeekend implements Parcelable{
 
     private String country, track;
     private int fp1Time, fp2Time, fp3Time, qulayTime, raceTime;
@@ -21,6 +24,19 @@ public class RaceWeekend {
         fp3Time = fp3;
         qulayTime = qualy;
         raceTime = race;
+    }
+
+    public RaceWeekend(Parcel data){
+        String[] d = new String[7];
+        data.readStringArray(d);
+
+        country = d[0];
+        track = d[1];
+        fp1Time = Integer.parseInt(d[2]);
+        fp2Time = Integer.parseInt(d[3]);
+        fp3Time = Integer.parseInt(d[4]);
+        qulayTime = Integer.parseInt(d[5]);
+        raceTime = Integer.parseInt(d[6]);
     }
 
     public String getCountry(){
@@ -61,4 +77,26 @@ public class RaceWeekend {
         return dates;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{country, track, ""+fp1Time, ""+fp2Time,
+                ""+fp3Time, ""+qulayTime, ""+raceTime});
+    }
+
+    public static final Creator<RaceWeekend> CREATOR = new Creator<RaceWeekend>() {
+        @Override
+        public RaceWeekend createFromParcel(Parcel in) {
+            return new RaceWeekend(in);
+        }
+
+        @Override
+        public RaceWeekend[] newArray(int size) {
+            return new RaceWeekend[size];
+        }
+    };
 }

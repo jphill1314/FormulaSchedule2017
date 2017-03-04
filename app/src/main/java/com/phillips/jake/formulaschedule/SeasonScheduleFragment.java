@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SeasonScheduleFragment extends Fragment {
 
+    ArrayList<RaceWeekend> schedule;
 
     public SeasonScheduleFragment() {
         // Required empty public constructor
@@ -23,8 +26,13 @@ public class SeasonScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (getArguments() != null){
+            schedule = getArguments().getParcelableArrayList(MainActivity.SCHEDULE_KEY);
+        }
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_season_schedule, container, false);
+
 
         ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
 
