@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="country_names">
+        <item>Australia</item>
+        <item>China</item>
+        <item>Bahrain</item>
+        <item>Russia</item>
+        <item>Spain</item>
+        <item>Monaco</item>
+        <item>Canada</item>
+        <item>Azerbaijan</item>
+        <item>Austria</item>
+        <item>United Kingdom</item>
+        <item>Hungary</item>
+        <item>Belgium</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>Malaysia</item>
+        <item>Japan</item>
+        <item>United States</item>
+        <item>Mexico</item>
+        <item>Brazil</item>
+        <item>Abu Dhabi</item>
+    </string-array>
+
     <integer-array name="FP1_Times">
         <item>1490317200</item>
         <item>1491534000</item>
