@@ -22,15 +22,14 @@
             android:gravity="center"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:paddingBottom="10dp"
-            android:text="Country"/>
+            android:paddingBottom="10dp" />
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/track_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="500dp"
+        android:layout_height="500dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

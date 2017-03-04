@@ -18,7 +18,10 @@ import java.util.ArrayList;
 
 public class SeasonScheduleAdapter extends RecyclerView.Adapter<SeasonScheduleAdapter.ViewHolder> {
 
-    ArrayList<RaceWeekend> schedule;
+    private static ArrayList<RaceWeekend> schedule;
+    public static final String EXTRA_COUNTRY = "country";
+    public static final String EXTRA_TRACK = "track";
+    public static final String EXTRA_TIME = "time";
 
     public SeasonScheduleAdapter(ArrayList<RaceWeekend> schedule){
         this.schedule = schedule;
@@ -99,6 +102,33 @@ public class SeasonScheduleAdapter extends RecyclerView.Adapter<SeasonScheduleAd
             flagIcon = (ImageView) view.findViewById(R.id.country_flag);
             tvCountry = (TextView) view.findViewById(R.id.country_name);
             tvDates = (TextView) view.findViewById(R.id.dates);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    RaceWeekend rw = getWeekend(tvCountry.getText().toString());
+                    String country = rw.getCountry();
+                    String track = rw.getTrack();
+                    int[] times = rw.getTimes();
+
+                    Context context = v.getContext();
+                    Intent i = new Intent(context, RaceWeekendActivity.class)
+                            .putExtra(EXTRA_COUNTRY, country)
+                            .putExtra(EXTRA_TRACK, track)
+                            .putExtra(EXTRA_TIME, times);
+                    context.startActivity(i);
+                }
+            });
+        }
+
+        public RaceWeekend getWeekend(String name){
+            for(RaceWeekend rw : schedule){
+                if(rw.getCountry().equals(name)){
+                    return rw;
+                }
+            }
+            return null;
         }
     }
+
 }

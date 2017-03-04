@@ -26,6 +26,16 @@ public class RaceWeekend implements Parcelable{
         raceTime = race;
     }
 
+    public RaceWeekend(String country, String track, int[] times){
+        this.country = country;
+        this.track = track;
+        fp1Time = times[0];
+        fp2Time = times[1];
+        fp3Time = times[2];
+        qulayTime = times[3];
+        raceTime = times[4];
+    }
+
     public RaceWeekend(Parcel data){
         String[] d = new String[7];
         data.readStringArray(d);
