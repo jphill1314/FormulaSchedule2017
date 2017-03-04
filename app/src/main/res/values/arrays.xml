@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="FP1_Times">
+        <item>1490317200</item>
+        <item>1491534000</item>
+        <item>1492171200</item>
+        <item>1493370000</item>
+        <item>1494579600</item>
+        <item>1495702800</item>
+        <item>1497020400</item>
+        <item>1498212000</item>
+        <item>1499418000</item>
+        <item>1500022800</item>
+        <item>1501232400</item>
+        <item>1503651600</item>
+        <item>1504256400</item>
+        <item>1505473200</item>
+        <item>1506657600</item>
+        <item>1507255200</item>
+        <item>1508515200</item>
+        <item>1509120000</item>
+        <item>1510315200</item>
+        <item>1511514000</item>
+    </integer-array>
+
+    <integer-array name="FP2_Times">
+        <item>1490331600</item>
+        <item>1491548400</item>
+        <item>1492185600</item>
+        <item>1493384400</item>
+        <item>1494594000</item>
+        <item>1495717200</item>
+        <item>1497034800</item>
+        <item>1498226400</item>
+        <item>1499432400</item>
+        <item>1500037200</item>
+        <item>1501246800</item>
+        <item>1503666000</item>
+        <item>1504270800</item>
+        <item>1505485800</item>
+        <item>1506672000</item>
+        <item>1507269600</item>
+        <item>1508529600</item>
+        <item>1509134400</item>
+        <item>1510329600</item>
+        <item>1511528400</item>
+    </integer-array>
+
+    <integer-array name="FP3_Times">
+        <item>1490410800</item>
+        <item>1491627600</item>
+        <item>1492261200</item>
+        <item>1493460000</item>
+        <item>1494669600</item>
+        <item>1495879200</item>
+        <item>1497106800</item>
+        <item>1498302000</item>
+        <item>1499508000</item>
+        <item>1500112800</item>
+        <item>1501322400</item>
+        <item>1503741600</item>
+        <item>1504346400</item>
+        <item>1505559600</item>
+        <item>1506754800</item>
+        <item>1507348800</item>
+        <item>1508605200</item>
+        <item>1509206400</item>
+        <item>1510405200</item>
+        <item>1511604000</item>
+    </integer-array>
+
+    <integer-array name="Qualy_Times">
+        <item>1490421600</item>
+        <item>1491638400</item>
+        <item>1492272000</item>
+        <item>1493470800</item>
+        <item>1494680400</item>
+        <item>1495890000</item>
+        <item>1497117600</item>
+        <item>1498312800</item>
+        <item>1499518800</item>
+        <item>1500123600</item>
+        <item>1501333200</item>
+        <item>1503752400</item>
+        <item>1504357200</item>
+        <item>1505570400</item>
+        <item>1506765600</item>
+        <item>1507359600</item>
+        <item>1508616000</item>
+        <item>1509217200</item>
+        <item>1510416000</item>
+        <item>1511614800</item>
+    </integer-array>
+
+    <integer-array name="Race_Times">
+        <item>1490508000</item>
+        <item>1491721200</item>
+        <item>1492358400</item>
+        <item>1493557200</item>
+        <item>1494766800</item>
+        <item>1495976400</item>
+        <item>1497207600</item>
+        <item>1498399200</item>
+        <item>1499605200</item>
+        <item>1500210000</item>
+        <item>1501419600</item>
+        <item>1503838800</item>
+        <item>1504443600</item>
+        <item>1505653200</item>
+        <item>1506844800</item>
+        <item>1507442400</item>
+        <item>1508702400</item>
+        <item>1509303600</item>
+        <item>1510502400</item>
+        <item>1511701200</item>
+    </integer-array>
+
+</resources>
