@@ -43,14 +43,13 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:id="@+id/num_days_to_next_session"
-                android:text="7"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:id="@+id/days_to_next_session"
-                android:text="Days"
+                android:text="@string/days"
                 android:gravity="center"/>
         </LinearLayout>
         <LinearLayout
@@ -64,14 +63,13 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:id="@+id/num_hours_to_next_session"
-                android:text="7"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:id="@+id/hours_to_next_session"
-                android:text="Hours"
+                android:text="@string/hours"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -86,14 +84,13 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:id="@+id/num_min_to_next_session"
-                android:text="25"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:id="@+id/min_to_next_session"
-                android:text="Minutes"
+                android:text="@string/minutes"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -108,14 +105,13 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:id="@+id/num_seconds_to_next_session"
-                android:text="15"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:id="@+id/seconds_to_next_session"
-                android:text="Seconds"
+                android:text="@string/seconds"
                 android:gravity="center"/>
 
         </LinearLayout>

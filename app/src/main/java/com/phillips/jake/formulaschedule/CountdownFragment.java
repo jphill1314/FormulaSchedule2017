@@ -42,7 +42,7 @@ public class CountdownFragment extends Fragment {
     }
 
     private String nextSession, nextRaceCountry;
-    private int timeToNextRace;
+    private long timeToNextRace;
 
     private void populateView(View rootView){
         nextSession();
@@ -60,13 +60,13 @@ public class CountdownFragment extends Fragment {
 
         new CountDownTimer(timeToNextRace, 1000){
             public void onTick(long millSecondsLeft){
-                int days = (int) (millSecondsLeft / (1000 * 3600 * 24));
+                long days = (millSecondsLeft / (1000 * 3600 * 24));
                 millSecondsLeft -= days * 24 * 3600 * 1000;
-                int hours = (int) (millSecondsLeft / (1000 * 3600));
+                long hours = (millSecondsLeft / (1000 * 3600));
                 millSecondsLeft -= hours * 3600 * 1000;
-                int minutes = (int) (millSecondsLeft / (1000 * 60));
+                long minutes = (millSecondsLeft / (1000 * 60));
                 millSecondsLeft -= minutes * 60 * 1000;
-                int seconds = (int) (millSecondsLeft / (1000));
+                long seconds = (millSecondsLeft / (1000));
 
                 tvDays.setText(days + "");
                 tvHours.setText(hours + "");
@@ -92,34 +92,34 @@ public class CountdownFragment extends Fragment {
 
                 race.setTimeInMillis(times[0] * 1000L);
                 if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+                    timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP1";
                     return;
                 }
 
                 race.setTimeInMillis(times[1] * 1000L);
                 if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+                    timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP2";
                     return;
                 }
 
                 race.setTimeInMillis(times[2] * 1000L);
                 if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+                    timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP3";
                     return;
                 }
 
                 race.setTimeInMillis(times[3] * 1000L);
                 if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+                    timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "Qualifying";
                     return;
                 }
 
                 race.setTimeInMillis(times[4] * 1000L);
-                timeToNextRace = (int) (race.getTimeInMillis() - current.getTimeInMillis());
+                timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                 nextSession = "Race";
                 return;
 

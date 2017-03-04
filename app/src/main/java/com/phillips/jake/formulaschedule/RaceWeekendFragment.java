@@ -4,15 +4,19 @@ import android.content.Context;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 
 public class RaceWeekendFragment extends Fragment {
@@ -28,6 +32,9 @@ public class RaceWeekendFragment extends Fragment {
 
 
     private RaceWeekend rw;
+    private long timeToNextRace;
+    private String nextSession;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,11 +61,14 @@ public class RaceWeekendFragment extends Fragment {
     }
 
     private void populateTopView(View view){
+        nextSession();
         ImageView flagIcon = (ImageView) view.findViewById(R.id.flag_icon);
         TextView countryName = (TextView) view.findViewById(R.id.host_country);
         ImageView trackMap = (ImageView) view.findViewById(R.id.track_map);
+        TextView nextSess = (TextView) view.findViewById(R.id.cd_session);
 
         countryName.setText(rw.getCountry());
+        nextSess.setText(nextSession);
 
         switch(rw.getCountry()){
             case "Australia": flagIcon.setImageResource(R.drawable.australia);
@@ -121,6 +131,75 @@ public class RaceWeekendFragment extends Fragment {
             case "United States": flagIcon.setImageResource(R.drawable.usa);
                 trackMap.setImageResource(R.drawable.circuit_usa);
         }
+
+        final TextView tvHours = (TextView) view.findViewById(R.id.num_hours_to_next_session);
+        final TextView tvMins = (TextView) view.findViewById(R.id.num_min_to_next_session);
+        final TextView tvSecs = (TextView) view.findViewById(R.id.num_seconds_to_next_session);
+        final TextView tvDays = (TextView) view.findViewById(R.id.num_days_to_next_session);
+
+
+        new CountDownTimer(timeToNextRace, 1000){
+            public void onTick(long millSecondsLeft){
+                long days =  (millSecondsLeft / (1000 * 3600 * 24));
+                millSecondsLeft -= days * 24 * 3600 * 1000;
+                long hours = (millSecondsLeft / (1000 * 3600));
+                millSecondsLeft -= hours * 3600 * 1000;
+                long minutes = (millSecondsLeft / (1000 * 60));
+                millSecondsLeft -= minutes * 60 * 1000;
+                long seconds = (millSecondsLeft / (1000));
+
+                tvDays.setText(days + "");
+                tvHours.setText(hours + "");
+                tvMins.setText(minutes + "");
+                tvSecs.setText(seconds + "");
+            }
+
+            public void onFinish(){
+
+            }
+        }.start();
     }
 
+    private void nextSession(){
+        Calendar current = Calendar.getInstance();
+        Calendar race = Calendar.getInstance();
+
+        int[] times = rw.getTimes();
+
+//        race.setTimeInMillis(times[0] * 1000L);
+//        if(current.compareTo(race) < 0){
+//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//            nextSession = "FP1";
+//            return;
+//        }
+//
+//        race.setTimeInMillis(times[1] * 1000L);
+//        if(current.compareTo(race) < 0){
+//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//            nextSession = "FP2";
+//            return;
+//        }
+//
+//        race.setTimeInMillis(times[2] * 1000L);
+//        if(current.compareTo(race) < 0){
+//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//            nextSession = "FP3";
+//            return;
+//        }
+//
+//        race.setTimeInMillis(times[3] * 1000L);
+//        if(current.compareTo(race) < 0){
+//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//            nextSession = "Qualifying";
+//            return;
+//        }
+
+        race.setTimeInMillis(times[4] * 1000L);
+        timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+        nextSession = "Race";
+
+        Log.d("C Time", current.getTimeInMillis() + "");
+        Log.d("R Time", race.getTimeInMillis() + "");
+        Log.d("TimeToNext", timeToNextRace + "");
+    }
 }
