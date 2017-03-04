@@ -42,7 +42,7 @@ public class SeasonScheduleAdapter extends RecyclerView.Adapter<SeasonScheduleAd
 
     @Override
     public int getItemCount() {
-        return schedule.size();
+        return 20;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

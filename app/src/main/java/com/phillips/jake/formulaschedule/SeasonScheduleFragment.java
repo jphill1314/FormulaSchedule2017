@@ -3,6 +3,10 @@ package com.phillips.jake.formulaschedule;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +32,21 @@ public class SeasonScheduleFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (getArguments() != null){
             schedule = getArguments().getParcelableArrayList(MainActivity.SCHEDULE_KEY);
+            Log.d("Debug", "This happened!");
         }
+
+        Log.d("Debug", "This happened2!");
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_season_schedule, container, false);
 
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-        ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
+        SeasonScheduleAdapter adapter = new SeasonScheduleAdapter(schedule);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
 
         return view;
     }

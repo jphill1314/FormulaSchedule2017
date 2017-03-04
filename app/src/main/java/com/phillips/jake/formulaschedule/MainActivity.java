@@ -2,6 +2,7 @@ package com.phillips.jake.formulaschedule;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -20,22 +21,26 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            createSchedule();
+
             CountdownFragment cdFrag = new CountdownFragment();
             SeasonScheduleFragment ssFrag = new SeasonScheduleFragment();
 
             Bundle scheduleBundle = new Bundle();
             scheduleBundle.putParcelableArrayList(SCHEDULE_KEY, schedule);
+            ssFrag.setArguments(scheduleBundle);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.top_frame_view, cdFrag)
                     .add(R.id.bottom_frame_view, ssFrag)
                     .commit();
 
-            createSchedule();
+
         }
     }
 
     private void createSchedule(){
+        schedule = new ArrayList<RaceWeekend>();
         String[] countries = getResources().getStringArray(R.array.country_names);
         int[] fp1Times = getResources().getIntArray(R.array.FP1_Times);
         int[] fp2Times = getResources().getIntArray(R.array.FP2_Times);
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < countries.length; i++){
             schedule.add(new RaceWeekend(countries[i], countries[i], fp1Times[i], fp2Times[i],
                     fp3Times[i], qualyTimes[i], raceTimes[i]));
+
         }
     }
 }
