@@ -1,7 +1,10 @@
 package com.phillips.jake.formulaschedule;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,6 +75,17 @@ public class SessionScheduleAdapter extends RecyclerView.Adapter<SessionSchedule
             name = (TextView) view.findViewById(R.id.session_name);
             date = (TextView) view.findViewById(R.id.session_date);
             time = (TextView) view.findViewById(R.id.session_time);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), SessionNotification.class);
+                    PendingIntent pIntent = PendingIntent.getBroadcast(view.getContext(), 0, intent ,0);
+
+                    AlarmManager alarmManager = (AlarmManager) view.getContext().getSystemService(Context.ALARM_SERVICE);
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pIntent);
+                }
+            });
         }
     }
 

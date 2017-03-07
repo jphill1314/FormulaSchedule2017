@@ -138,6 +138,6 @@ public class CountdownFragment extends Fragment {
         PendingIntent pIntent = PendingIntent.getBroadcast(getContext(), 0, intent ,0);
 
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5 * 1000, pIntent);
     }
 }

@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RaceWeekendActivity"></activity>
+
+        <receiver android:name=".SessionNotification"></receiver>
     </application>
 
 </manifest>
