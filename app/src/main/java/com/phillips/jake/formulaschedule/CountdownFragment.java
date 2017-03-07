@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -99,7 +100,14 @@ public class CountdownFragment extends Fragment {
                 if(current.compareTo(race) < 0){
                     timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP1";
-                    createNotificationAlarm(100L);
+                    //createNotificationAlarm(race.getTimeInMillis());
+                    createNotificationAlarm(current.getTimeInMillis() + 15 * 1000);
+
+                    SharedPreferences pref = getActivity().getSharedPreferences(getContext().getString(R.string.Shared_Pref_Key), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor prefEdit = pref.edit();
+                    prefEdit.putString(getContext().getString(R.string.Shared_Pref_Country), nextRaceCountry);
+                    prefEdit.putString(getContext().getString(R.string.Shared_Pref_Session), nextSession);
+
                     return;
                 }
 
@@ -107,6 +115,7 @@ public class CountdownFragment extends Fragment {
                 if(current.compareTo(race) < 0){
                     timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP2";
+                    createNotificationAlarm(race.getTimeInMillis());
                     return;
                 }
 
@@ -114,6 +123,7 @@ public class CountdownFragment extends Fragment {
                 if(current.compareTo(race) < 0){
                     timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP3";
+                    createNotificationAlarm(race.getTimeInMillis());
                     return;
                 }
 
@@ -121,12 +131,14 @@ public class CountdownFragment extends Fragment {
                 if(current.compareTo(race) < 0){
                     timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "Qualifying";
+                    createNotificationAlarm(race.getTimeInMillis());
                     return;
                 }
 
                 race.setTimeInMillis(times[4] * 1000L);
                 timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                 nextSession = "Race";
+                createNotificationAlarm(race.getTimeInMillis());
                 return;
 
             }
@@ -138,6 +150,6 @@ public class CountdownFragment extends Fragment {
         PendingIntent pIntent = PendingIntent.getBroadcast(getContext(), 0, intent ,0);
 
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5 * 1000, pIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, pIntent);
     }
 }
