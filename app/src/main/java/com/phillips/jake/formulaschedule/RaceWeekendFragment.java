@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -136,28 +137,34 @@ public class RaceWeekendFragment extends Fragment {
         final TextView tvMins = (TextView) view.findViewById(R.id.num_min_to_next_session);
         final TextView tvSecs = (TextView) view.findViewById(R.id.num_seconds_to_next_session);
         final TextView tvDays = (TextView) view.findViewById(R.id.num_days_to_next_session);
+        LinearLayout cd = (LinearLayout) view.findViewById(R.id.cd_layout);
 
+        if(timeToNextRace > 0) {
+            cd.setVisibility(View.VISIBLE);
+            new CountDownTimer(timeToNextRace, 1000) {
+                public void onTick(long millSecondsLeft) {
+                    long days = (millSecondsLeft / (1000 * 3600 * 24));
+                    millSecondsLeft -= days * 24 * 3600 * 1000;
+                    long hours = (millSecondsLeft / (1000 * 3600));
+                    millSecondsLeft -= hours * 3600 * 1000;
+                    long minutes = (millSecondsLeft / (1000 * 60));
+                    millSecondsLeft -= minutes * 60 * 1000;
+                    long seconds = (millSecondsLeft / (1000));
 
-        new CountDownTimer(timeToNextRace, 1000){
-            public void onTick(long millSecondsLeft){
-                long days =  (millSecondsLeft / (1000 * 3600 * 24));
-                millSecondsLeft -= days * 24 * 3600 * 1000;
-                long hours = (millSecondsLeft / (1000 * 3600));
-                millSecondsLeft -= hours * 3600 * 1000;
-                long minutes = (millSecondsLeft / (1000 * 60));
-                millSecondsLeft -= minutes * 60 * 1000;
-                long seconds = (millSecondsLeft / (1000));
+                    tvDays.setText(days + "");
+                    tvHours.setText(hours + "");
+                    tvMins.setText(minutes + "");
+                    tvSecs.setText(seconds + "");
+                }
 
-                tvDays.setText(days + "");
-                tvHours.setText(hours + "");
-                tvMins.setText(minutes + "");
-                tvSecs.setText(seconds + "");
-            }
+                public void onFinish() {
 
-            public void onFinish(){
-
-            }
-        }.start();
+                }
+            }.start();
+        }
+        else{
+            cd.setVisibility(View.GONE);
+        }
     }
 
     private void nextSession(){
@@ -166,40 +173,41 @@ public class RaceWeekendFragment extends Fragment {
 
         int[] times = rw.getTimes();
 
-//        race.setTimeInMillis(times[0] * 1000L);
-//        if(current.compareTo(race) < 0){
-//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-//            nextSession = "FP1";
-//            return;
-//        }
-//
-//        race.setTimeInMillis(times[1] * 1000L);
-//        if(current.compareTo(race) < 0){
-//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-//            nextSession = "FP2";
-//            return;
-//        }
-//
-//        race.setTimeInMillis(times[2] * 1000L);
-//        if(current.compareTo(race) < 0){
-//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-//            nextSession = "FP3";
-//            return;
-//        }
-//
-//        race.setTimeInMillis(times[3] * 1000L);
-//        if(current.compareTo(race) < 0){
-//            timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-//            nextSession = "Qualifying";
-//            return;
-//        }
+        race.setTimeInMillis(times[0] * 1000L);
+        if(current.compareTo(race) < 0){
+            timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+            nextSession = "FP1";
+            return;
+        }
+
+        race.setTimeInMillis(times[1] * 1000L);
+        if(current.compareTo(race) < 0){
+            timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+            nextSession = "FP2";
+            return;
+        }
+
+        race.setTimeInMillis(times[2] * 1000L);
+        if(current.compareTo(race) < 0){
+            timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+            nextSession = "FP3";
+            return;
+        }
+
+        race.setTimeInMillis(times[3] * 1000L);
+        if(current.compareTo(race) < 0){
+            timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+            nextSession = "Qualifying";
+            return;
+        }
 
         race.setTimeInMillis(times[4] * 1000L);
-        timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
-        nextSession = "Race";
+        if(current.compareTo(race) < 0) {
+            timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
+            nextSession = "Race";
+            return;
+        }
 
-        Log.d("C Time", current.getTimeInMillis() + "");
-        Log.d("R Time", race.getTimeInMillis() + "");
-        Log.d("TimeToNext", timeToNextRace + "");
+        timeToNextRace = -1;
     }
 }

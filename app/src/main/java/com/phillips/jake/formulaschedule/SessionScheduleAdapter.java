@@ -1,6 +1,8 @@
 package com.phillips.jake.formulaschedule;
 
-import android.content.pm.PackageInstaller;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * Created by Jake on 3/4/2017.

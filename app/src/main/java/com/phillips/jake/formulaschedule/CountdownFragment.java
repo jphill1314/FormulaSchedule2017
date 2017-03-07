@@ -1,9 +1,14 @@
 package com.phillips.jake.formulaschedule;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +99,7 @@ public class CountdownFragment extends Fragment {
                 if(current.compareTo(race) < 0){
                     timeToNextRace = (race.getTimeInMillis() - current.getTimeInMillis());
                     nextSession = "FP1";
+                    createNotificationAlarm(100L);
                     return;
                 }
 
@@ -125,5 +131,13 @@ public class CountdownFragment extends Fragment {
 
             }
         }
+    }
+
+    private void createNotificationAlarm(long time){
+        Intent intent = new Intent(getContext(), SessionNotification.class);
+        PendingIntent pIntent = PendingIntent.getBroadcast(getContext(), 0, intent ,0);
+
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pIntent);
     }
 }
